@@ -13,7 +13,7 @@ public class Employee {
     private String lastName;
     private String gender;
     private int age;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "city_id")
     private City city;
 

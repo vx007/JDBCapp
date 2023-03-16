@@ -33,7 +33,9 @@ public class Application {
         employee.setAge(68);
         employeeDAO.update(employee);
 
-        cityDAO.delete(city);
         employeeDAO.delete(employee);
+
+        cityDAO.create(city);
+        cityDAO.delete(city);
     }
 }
