@@ -2,23 +2,40 @@ import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
+
+        CityDAO cityDAO = new CityDAOImpl();
         EmployeeDAO employeeDAO = new EmployeeDAOImpl();
 
-        Employee employee = new Employee("Bruce", "Willis", "male", 67, 1);
+        City city = new City("Los Angeles");
+        cityDAO.create(city);
 
+        Employee employee = new Employee("Bruce", "Willis", "male", 67, city);
         employeeDAO.create(employee);
 
+
+        System.out.println(cityDAO.readById(1));
         System.out.println(employeeDAO.readById(1));
 
-        List<Employee> employees = employeeDAO.readAll();
 
+        List<City> cities = cityDAO.readAll();
+        for (City entry : cities) {
+            System.out.println(entry);
+        }
+
+        List<Employee> employees = employeeDAO.readAll();
         for (Employee entry : employees) {
             System.out.println(entry);
         }
 
-        employee.setCity(2);
+        city.setName("New York");
+        cityDAO.update(city);
+
+        employee.setAge(68);
         employeeDAO.update(employee);
 
         employeeDAO.delete(employee);
+
+        cityDAO.create(city);
+        cityDAO.delete(city);
     }
 }
